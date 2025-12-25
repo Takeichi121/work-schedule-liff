@@ -798,6 +798,13 @@ tr:last-child td{border-bottom:none}
 <body>
 ${body}
 <script>
+window.onerror = function(msg, url, line) {
+  var d = document.createElement("div");
+  d.style.color = "red";
+  d.style.padding = "20px";
+  d.textContent = "Error: " + msg + " at line " + line;
+  document.body.appendChild(d);
+};
 ${script || ""}
 </script>
 </body>
@@ -1218,7 +1225,7 @@ function render(){
     const actions = el.querySelector(".d-actions");
 
     if(myShift){
-      el.querySelector(".d-status").innerHTML = \`<span class="chip">\${myShift.shiftGroup} \${myShift.startTime}-\${myShift.endTime}</span>\`;
+      el.querySelector(".d-status").innerHTML = '<span class="chip">' + myShift.shiftGroup + ' ' + myShift.startTime + '-' + myShift.endTime + '</span>';
 
       const btn = document.createElement("button");
       btn.className = "btn btnDanger";
